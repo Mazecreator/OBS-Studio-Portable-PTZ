@@ -1,0 +1,561 @@
+{
+ "transition_duration": 300,
+ "sources": [
+  {
+   "versioned_id": "text_gdiplus_v2",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "text_gdiplus",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "LOWER3RDS",
+   "mixers": 0,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "text": "Install Lower thirds here:
+XXXXXXX",
+    "font": {
+     "flags": 0,
+     "style": "Regular",
+     "size": 48,
+     "face": "Arial"
+    }
+   },
+   "deinterlace_mode": 0
+  },{
+   "versioned_id": "color_source_v3",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {},
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "color_source",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "Color Source",
+   "mixers": 0,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "color": 4278316762
+   },
+   "deinterlace_mode": 0
+  },{
+   "versioned_id": "browser_source",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "libobs.push-to-talk": [],
+    "libobs.push-to-mute": [],
+    "ObsBrowser.Refresh": [],
+    "libobs.unmute": [],
+    "libobs.mute": []
+   },
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "browser_source",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "Browser 2",
+   "mixers": 255,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "webpage_control_level": 5,
+    "css": "body { 
+  background-color: rgba(0, 0, 0, 255);
+  margin: 0px auto; overflow: hidden;
+}",
+    "width": 1920,
+    "is_local_file": true,
+    "height": 1080,
+    "local_file": "D:/OBS/OBS Studio Portable PTZ/README2.html"
+   },
+   "deinterlace_mode": 0
+  },{
+   "versioned_id": "scene",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "libobs.show_scene_item.LOWER3RDS": [],
+    "libobs.show_scene_item.Browser 2": [],
+    "libobs.hide_scene_item.LOWER3RDS": [],
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.Color Source": [],
+    "libobs.hide_scene_item.Color Source": [],
+    "libobs.hide_scene_item.Browser 2": []
+   },
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "scene",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "Info",
+   "mixers": 0,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "custom_size": false,
+    "items": [
+     {
+      "rot": 0,
+      "pos": {
+       "y": 0,
+       "x": 0
+      },
+      "blend_type": "normal",
+      "hide_transition": {
+       "duration": 0
+      },
+      "crop_right": 0,
+      "scale_filter": "disable",
+      "visible": true,
+      "group_item_backup": false,
+      "crop_left": 0,
+      "show_transition": {
+       "duration": 0
+      },
+      "private_settings": {},
+      "id": 2,
+      "crop_top": 0,
+      "bounds_type": 0,
+      "scale": {
+       "y": 1,
+       "x": 1
+      },
+      "locked": false,
+      "name": "Color Source",
+      "bounds_align": 0,
+      "crop_bottom": 0,
+      "align": 5,
+      "bounds": {
+       "y": 0,
+       "x": 0
+      }
+     },{
+      "rot": 0,
+      "pos": {
+       "y": 0,
+       "x": 0
+      },
+      "blend_type": "normal",
+      "hide_transition": {
+       "duration": 0
+      },
+      "crop_right": 0,
+      "scale_filter": "disable",
+      "visible": true,
+      "group_item_backup": false,
+      "crop_left": 0,
+      "show_transition": {
+       "duration": 0
+      },
+      "private_settings": {},
+      "id": 1,
+      "crop_top": 0,
+      "bounds_type": 0,
+      "scale": {
+       "y": 1,
+       "x": 1
+      },
+      "locked": false,
+      "name": "Browser 2",
+      "bounds_align": 0,
+      "crop_bottom": 0,
+      "align": 5,
+      "bounds": {
+       "y": 0,
+       "x": 0
+      }
+     },{
+      "rot": 0,
+      "pos": {
+       "y": 0,
+       "x": 0
+      },
+      "blend_type": "normal",
+      "hide_transition": {
+       "duration": 0
+      },
+      "crop_right": 0,
+      "scale_filter": "disable",
+      "visible": true,
+      "group_item_backup": false,
+      "crop_left": 0,
+      "show_transition": {
+       "duration": 0
+      },
+      "private_settings": {},
+      "id": 4,
+      "crop_top": 0,
+      "bounds_type": 0,
+      "scale": {
+       "y": 1,
+       "x": 1
+      },
+      "locked": false,
+      "name": "LOWER3RDS",
+      "bounds_align": 0,
+      "crop_bottom": 0,
+      "align": 5,
+      "bounds": {
+       "y": 0,
+       "x": 0
+      }
+     }],
+    "id_counter": 4
+   },
+   "deinterlace_mode": 0
+  },{
+   "versioned_id": "scene",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "libobs.show_scene_item.VLC Video Source": [],
+    "libobs.hide_scene_item.Browser": [],
+    "libobs.hide_scene_item.VLC Video Source": [],
+    "OBSBasic.SelectScene": [],
+    "libobs.show_scene_item.Browser": []
+   },
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "scene",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "Scene",
+   "mixers": 0,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "custom_size": false,
+    "items": [
+     {
+      "rot": 0,
+      "pos": {
+       "y": 0,
+       "x": 0
+      },
+      "blend_type": "normal",
+      "hide_transition": {
+       "duration": 0
+      },
+      "crop_right": 0,
+      "scale_filter": "disable",
+      "visible": true,
+      "group_item_backup": false,
+      "crop_left": 0,
+      "show_transition": {
+       "duration": 0
+      },
+      "private_settings": {},
+      "id": 1,
+      "crop_top": 0,
+      "bounds_type": 0,
+      "scale": {
+       "y": 1,
+       "x": 1
+      },
+      "locked": false,
+      "name": "VLC Video Source",
+      "bounds_align": 0,
+      "crop_bottom": 0,
+      "align": 5,
+      "bounds": {
+       "y": 0,
+       "x": 0
+      }
+     },{
+      "rot": 0,
+      "pos": {
+       "y": 0,
+       "x": 0
+      },
+      "blend_type": "normal",
+      "hide_transition": {
+       "duration": 0
+      },
+      "crop_right": 0,
+      "scale_filter": "disable",
+      "visible": true,
+      "group_item_backup": false,
+      "crop_left": 0,
+      "show_transition": {
+       "duration": 0
+      },
+      "private_settings": {},
+      "id": 2,
+      "crop_top": 0,
+      "bounds_type": 0,
+      "scale": {
+       "y": 1,
+       "x": 1
+      },
+      "locked": false,
+      "name": "Browser",
+      "bounds_align": 0,
+      "crop_bottom": 0,
+      "align": 5,
+      "bounds": {
+       "y": 0,
+       "x": 0
+      }
+     }],
+    "id_counter": 2
+   },
+   "deinterlace_mode": 0
+  },{
+   "versioned_id": "vlc_source",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "libobs.push-to-talk": [],
+    "libobs.push-to-mute": [],
+    "VLCSource.Restart": [],
+    "libobs.unmute": [],
+    "VLCSource.PlayPause": [],
+    "VLCSource.Stop": [],
+    "libobs.mute": [],
+    "VLCSource.PlaylistPrev": [],
+    "VLCSource.PlaylistNext": []
+   },
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "vlc_source",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "VLC Video Source",
+   "mixers": 255,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "playlist": [
+     {
+      "selected": false,
+      "hidden": false,
+      "value": "D:/OBS/OBS Studio Portable PTZ/assets/video/starting soon - stone.mp4"
+     },{
+      "selected": false,
+      "hidden": false,
+      "value": "D:/OBS/OBS Studio Portable PTZ/assets/video/Thanks for watching - stone loop.mp4"
+     },{
+      "selected": false,
+      "hidden": false,
+      "value": "D:/OBS/OBS Studio Portable PTZ/assets/video/Thanks for watching - wood loop.mp4"
+     },{
+      "selected": false,
+      "hidden": false,
+      "value": "D:/OBS/OBS Studio Portable PTZ/assets/video/welcome sand reveal.mp4"
+     },{
+      "selected": false,
+      "hidden": false,
+      "value": "D:/OBS/OBS Studio Portable PTZ/assets/video/welcome starting soon - stone.mp4"
+     },{
+      "selected": false,
+      "hidden": false,
+      "value": "D:/OBS/OBS Studio Portable PTZ/assets/video/welcome starting soon - wood loop.mp4"
+     }]
+   },
+   "deinterlace_mode": 0
+  },{
+   "versioned_id": "browser_source",
+   "muted": false,
+   "balance": 0.5,
+   "deinterlace_field_order": 0,
+   "push-to-talk-delay": 0,
+   "hotkeys": {
+    "libobs.push-to-talk": [],
+    "libobs.push-to-mute": [],
+    "ObsBrowser.Refresh": [],
+    "libobs.unmute": [],
+    "libobs.mute": []
+   },
+   "push-to-mute-delay": 0,
+   "volume": 1,
+   "flags": 0,
+   "private_settings": {},
+   "id": "browser_source",
+   "push-to-talk": false,
+   "push-to-mute": false,
+   "monitoring_type": 0,
+   "sync": 0,
+   "name": "Browser",
+   "mixers": 255,
+   "prev_ver": 453115908,
+   "enabled": true,
+   "settings": {
+    "url": "file:///D:\\OBS\\OBS Studio Portable PTZ\\lower thirds\\browser-source.html",
+    "width": 1920,
+    "is_local_file": false,
+    "height": 1080
+   },
+   "deinterlace_mode": 0
+  }],
+ "DesktopAudioDevice1": {
+  "versioned_id": "wasapi_output_capture",
+  "muted": false,
+  "balance": 0.5,
+  "deinterlace_field_order": 0,
+  "push-to-talk-delay": 0,
+  "hotkeys": {
+   "libobs.push-to-talk": [],
+   "libobs.push-to-mute": [],
+   "libobs.unmute": [],
+   "libobs.mute": []
+  },
+  "push-to-mute-delay": 0,
+  "volume": 1,
+  "flags": 0,
+  "private_settings": {},
+  "id": "wasapi_output_capture",
+  "push-to-talk": false,
+  "push-to-mute": false,
+  "monitoring_type": 0,
+  "sync": 0,
+  "name": "Desktop Audio",
+  "mixers": 255,
+  "prev_ver": 453115908,
+  "enabled": true,
+  "settings": {
+   "device_id": "default"
+  },
+  "deinterlace_mode": 0
+ },
+ "current_scene": "Info",
+ "groups": [],
+ "scaling_enabled": false,
+ "AuxAudioDevice1": {
+  "versioned_id": "wasapi_input_capture",
+  "muted": false,
+  "balance": 0.5,
+  "deinterlace_field_order": 0,
+  "push-to-talk-delay": 0,
+  "hotkeys": {
+   "libobs.push-to-talk": [],
+   "libobs.push-to-mute": [],
+   "libobs.unmute": [],
+   "libobs.mute": []
+  },
+  "push-to-mute-delay": 0,
+  "volume": 1,
+  "flags": 0,
+  "private_settings": {},
+  "id": "wasapi_input_capture",
+  "push-to-talk": false,
+  "push-to-mute": false,
+  "monitoring_type": 0,
+  "sync": 0,
+  "name": "Mic/Aux",
+  "mixers": 255,
+  "prev_ver": 453115908,
+  "enabled": true,
+  "settings": {
+   "device_id": "default"
+  },
+  "deinterlace_mode": 0
+ },
+ "transitions": [],
+ "scene_order": [
+  {
+   "name": "Scene"
+  },{
+   "name": "Info"
+  }],
+ "preview_locked": false,
+ "saved_projectors": [],
+ "current_transition": "Fade",
+ "scaling_off_y": 0,
+ "scaling_off_x": 0,
+ "name": "JIMCOMUSA",
+ "modules": {
+  "captions": {
+   "source": "",
+   "lang_id": 1033,
+   "provider": "mssapi",
+   "enabled": false
+  },
+  "scripts-tool": [],
+  "auto-scene-switcher": {
+   "active": false,
+   "switches": [],
+   "interval": 300,
+   "non_matching_scene": "",
+   "switch_if_not_matching": false
+  },
+  "output-timer": {
+   "recordTimerSeconds": 30,
+   "streamTimerMinutes": 0,
+   "streamTimerHours": 0,
+   "autoStartRecordTimer": false,
+   "streamTimerSeconds": 30,
+   "recordTimerHours": 0,
+   "recordTimerMinutes": 0,
+   "autoStartStreamTimer": false,
+   "pauseRecordTimer": true
+  },
+  "decklink_captions": {
+   "source": ""
+  }
+ },
+ "current_program_scene": "Info",
+ "scaling_level": 0,
+ "quick_transitions": [
+  {
+   "hotkeys": [],
+   "id": 1,
+   "fade_to_black": false,
+   "duration": 300,
+   "name": "Cut"
+  },{
+   "hotkeys": [],
+   "id": 2,
+   "fade_to_black": false,
+   "duration": 300,
+   "name": "Fade"
+  },{
+   "hotkeys": [],
+   "id": 3,
+   "fade_to_black": true,
+   "duration": 300,
+   "name": "Fade"
+  }]
+}

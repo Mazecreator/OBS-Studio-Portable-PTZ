@@ -1,0 +1,188 @@
+//    *************************** LiveVisionKit ****************************
+//    Copyright (C) 2022  Sebastian Di Marco (crowsinc.dev@gmail.com)
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+// 	  **********************************************************************
+
+#include "ffx_a_mod.h"
+
+//---------------------------------------------------------------------------------------------------------------------
+//    Uniforms, Constants & Samplers
+//---------------------------------------------------------------------------------------------------------------------
+
+uniform float4x4 ViewProj;
+uniform texture2d image; 
+
+uniform AF2 input_size;
+uniform AF2 output_size;
+uniform AF2 region_uv_offset;
+
+uniform AF4 easu_const_0;
+uniform AF4 easu_const_1;
+uniform AF4 easu_const_2;
+uniform AF4 easu_const_3;
+uniform AF4 rcas_const_0;
+
+sampler_state LinearSampler 
+{
+    Filter      = Linear; 
+    AddressU    = Clamp;
+    AddressV    = Clamp;
+};
+
+sampler_state PointSampler 
+{
+    Filter      = Point; 
+    AddressU    = Clamp;
+    AddressV    = Clamp;
+};
+
+//---------------------------------------------------------------------------------------------------------------------
+//    Vertex Shader
+//---------------------------------------------------------------------------------------------------------------------
+
+struct VSData 
+{
+    float4 pos : POSITION;
+    float2 uv  : TEXCOORD0;
+};
+
+VSData VSMain(VSData vs)
+{
+    VSData vs_out;
+    vs_out.pos = mul(float4(vs.pos.xyz, 1.0), ViewProj);
+    vs_out.uv  = vs.uv;
+    return vs_out;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//    FSR Functions 
+//---------------------------------------------------------------------------------------------------------------------
+
+// The textureGather (GLSL 400) and Gather*** (HLSL 5+) functions which are ideally
+// required for these functions are not supported. So we instead mimic the functionality 
+// by using point sampling.  
+//
+// For a given point p in normalized texture coordinates. We want to grab neighbouring
+// texels x, y, z, and w in the listed order.
+//
+//                                  +---+---+
+//                                  | w | z |
+//                                  +--(p)--+
+//                                  | x | y |
+//                                  +---+---+
+//
+// To get the normalized texture coordinates for each required texel, we offset 
+// point p by half the texel size using addition/subtraction as necessary.
+AF4 FsrEasuRF(AF2 p)
+{
+    AF2 half_texel_size = AF2_(0.5) / input_size;
+
+	p += region_uv_offset;
+    return AF4(
+        image.Sample(PointSampler, AF2(p.x - half_texel_size.x, p.y + half_texel_size.y)).r,
+        image.Sample(PointSampler, AF2(p.x + half_texel_size.x, p.y + half_texel_size.y)).r,
+        image.Sample(PointSampler, AF2(p.x + half_texel_size.x, p.y - half_texel_size.y)).r,
+        image.Sample(PointSampler, AF2(p.x - half_texel_size.x, p.y - half_texel_size.y)).r
+    );
+}
+
+AF4 FsrEasuGF(AF2 p)
+{
+    AF2 half_texel_size = AF2_(0.5) / input_size;
+
+	p += region_uv_offset;
+    return AF4(
+        image.Sample(PointSampler, AF2(p.x - half_texel_size.x, p.y + half_texel_size.y)).g,
+        image.Sample(PointSampler, AF2(p.x + half_texel_size.x, p.y + half_texel_size.y)).g,
+        image.Sample(PointSampler, AF2(p.x + half_texel_size.x, p.y - half_texel_size.y)).g,
+        image.Sample(PointSampler, AF2(p.x - half_texel_size.x, p.y - half_texel_size.y)).g
+    );
+}
+
+AF4 FsrEasuBF(AF2 p)
+{
+    AF2 half_texel_size = AF2_(0.5) / input_size;
+
+	p += region_uv_offset;
+    return AF4(
+        image.Sample(PointSampler, AF2(p.x - half_texel_size.x, p.y + half_texel_size.y)).b,
+        image.Sample(PointSampler, AF2(p.x + half_texel_size.x, p.y + half_texel_size.y)).b,
+        image.Sample(PointSampler, AF2(p.x + half_texel_size.x, p.y - half_texel_size.y)).b,
+        image.Sample(PointSampler, AF2(p.x - half_texel_size.x, p.y - half_texel_size.y)).b
+    );
+}
+
+AF4 FsrRcasLoadF(ASU2 p)
+{   
+#ifdef _OPENGL
+    return texelFetch(image, p, 0);
+#else
+    return image.Load(ASU3(p, 0));
+#endif
+}
+
+void FsrRcasInputF(inout AF1 r, inout AF1 g, inout AF1 b){ /* UNUSED */ }
+
+#include "ffx_fsr1_mod.h"
+
+//---------------------------------------------------------------------------------------------------------------------
+//    EASU Pixel Shader
+//---------------------------------------------------------------------------------------------------------------------
+
+float4 EASUPSMain(VSData vs) : TARGET
+{
+    AF3 col = AF3(0, 0, 0);
+    AF2 pos = floor(vs.uv * output_size.xy); 
+
+    FsrEasuF(col, pos, easu_const_0, easu_const_1, easu_const_2, easu_const_3);
+
+    return float4(col, 1.0);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//    RCAS Pixel Shader
+//---------------------------------------------------------------------------------------------------------------------
+
+float4 RCASPSMain(VSData vs) : TARGET
+{
+    AF3 col = AF3(0, 0, 0);
+    AF2 pos = floor(vs.uv * output_size.xy);
+   
+    FsrRcasF(col.r, col.g, col.b, pos, rcas_const_0);
+
+    return float4(col, 1.0);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+//    Techniques
+//---------------------------------------------------------------------------------------------------------------------
+
+technique EASU
+{
+    pass
+    {
+        vertex_shader = VSMain(vs);
+        pixel_shader  = EASUPSMain(vs);
+    }
+};
+
+technique RCAS
+{
+    pass
+    {
+        vertex_shader = VSMain(vs);
+        pixel_shader  = RCASPSMain(vs);
+    }
+};
